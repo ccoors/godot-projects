@@ -1,0 +1,5 @@
+License: CC0
+
+Sources:
+https://kenney.nl/assets/impact-sounds
+https://kenney.nl/assets/interface-sounds

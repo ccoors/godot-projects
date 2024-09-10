@@ -1,0 +1,151 @@
+[gd_scene load_steps=14 format=3 uid="uid://mfptmnussncd"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_m8wil"]
+[ext_resource type="Script" path="res://mesh_instance_3d.gd" id="1_pujgp"]
+[ext_resource type="Script" path="res://node_3d.gd" id="2_6fsyi"]
+[ext_resource type="Material" uid="uid://34tk1avajrq1" path="res://object_material.tres" id="2_66t51"]
+[ext_resource type="Shader" path="res://palette_shader.gdshader" id="2_ed4u7"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_1ohoi"]
+material = ExtResource("2_66t51")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f7ssj"]
+sky_top_color = Color(0, 0, 0, 1)
+sky_horizon_color = Color(0.134065, 0.698399, 1, 1)
+ground_bottom_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Sky" id="Sky_q24bb"]
+sky_material = SubResource("ProceduralSkyMaterial_f7ssj")
+
+[sub_resource type="Environment" id="Environment_xq7m1"]
+background_mode = 2
+sky = SubResource("Sky_q24bb")
+ambient_light_source = 1
+ambient_light_color = Color(1, 1, 1, 1)
+glow_enabled = true
+glow_strength = 1.5
+glow_blend_mode = 1
+fog_mode = 1
+fog_light_color = Color(0, 0, 0, 1)
+fog_density = 1.0
+fog_depth_begin = 0.0
+fog_depth_end = 24.5
+
+[sub_resource type="Gradient" id="Gradient_vqsfr"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_iit2u"]
+gradient = SubResource("Gradient_vqsfr")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ql2in"]
+shader = ExtResource("2_ed4u7")
+shader_parameter/threshold = 0.01
+shader_parameter/palette_image = SubResource("GradientTexture1D_iit2u")
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_dgus7"]
+size = Vector2(320, 240)
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_m8wil")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.82466)
+fov = 30.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("TorusMesh_1ohoi")
+script = ExtResource("1_pujgp")
+
+[node name="LightRig" type="Node3D" parent="."]
+script = ExtResource("2_6fsyi")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="LightRig"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3.56538, 1.06971)
+light_color = Color(0.537255, 0.705882, 0.980392, 1)
+light_energy = 5.0
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="LightRig"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.999999, 0.4708)
+light_color = Color(0.836304, 0.199969, 0.066557, 1)
+light_energy = 1.325
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="LightRig"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -1.55962, 4.80708)
+light_color = Color(2.5028e-06, 0.560904, 0.35317, 1)
+light_energy = 16.0
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="LightRig"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -2, 3)
+light_color = Color(0.605115, 0.439535, 3.85046e-07, 1)
+light_energy = 5.0
+
+[node name="OmniLight3D5" type="OmniLight3D" parent="LightRig"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -2, -3.47345)
+light_color = Color(2.31028e-06, 0.517434, 0.675779, 1)
+light_energy = 5.0
+
+[node name="OmniLight3D6" type="OmniLight3D" parent="LightRig"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.93035, -2, -3.47345)
+light_color = Color(0.69908, 0.00223789, 0.90395, 1)
+light_energy = 5.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_xq7m1")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_ql2in")
+texture = SubResource("PlaceholderTexture2D_dgus7")
+centered = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Dither threshold"
+vertical_alignment = 1
+
+[node name="DitherSlider" type="HSlider" parent="CanvasLayer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+tooltip_text = "Dither Threshold"
+max_value = 0.2
+step = 0.001
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ShaderCheckBox" type="CheckBox" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "Shader"
+
+[node name="RotateCheckBox" type="CheckBox" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+text = "Rotate"
+
+[node name="PaletteSelector" type="MenuButton" parent="CanvasLayer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Palette:"
+flat = false
+
+[connection signal="value_changed" from="CanvasLayer/VBoxContainer/HBoxContainer2/DitherSlider" to="." method="_on_v_slider_value_changed"]
+[connection signal="toggled" from="CanvasLayer/VBoxContainer/HBoxContainer/ShaderCheckBox" to="." method="_on_check_box_toggled"]

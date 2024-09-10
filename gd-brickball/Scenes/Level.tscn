@@ -1,0 +1,200 @@
+[gd_scene load_steps=9 format=3 uid="uid://bay1h4edf5atk"]
+
+[ext_resource type="PackedScene" uid="uid://bxayuyqnefy37" path="res://Scenes/Ball.tscn" id="1_i7a7d"]
+[ext_resource type="Script" path="res://Scripts/level.gd" id="1_taqbr"]
+[ext_resource type="PackedScene" uid="uid://bmvy4828b1gdo" path="res://Scenes/Paddle.tscn" id="2_nyen7"]
+[ext_resource type="PackedScene" uid="uid://duv0xlkpy635a" path="res://Scenes/PlayfieldLimits.tscn" id="3_drv7g"]
+[ext_resource type="PackedScene" uid="uid://icf0uragajpy" path="res://Scenes/Brick.tscn" id="4_cvgef"]
+[ext_resource type="FontFile" uid="uid://qndj2rnu70gw" path="res://Fonts/clubberlang3d.ttf" id="5_cnpw2"]
+
+[sub_resource type="Gradient" id="Gradient_87q35"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8r1yw"]
+gradient = SubResource("Gradient_87q35")
+
+[node name="Level" type="Node2D"]
+process_mode = 3
+texture_filter = 1
+script = ExtResource("1_taqbr")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="Ball" parent="." groups=["balls"] instance=ExtResource("1_i7a7d")]
+position = Vector2(361, 420)
+
+[node name="PlayfieldLimits" parent="." instance=ExtResource("3_drv7g")]
+
+[node name="Paddle" parent="." instance=ExtResource("2_nyen7")]
+unique_name_in_owner = true
+position = Vector2(300, 566)
+size = 100
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(399, 591.002)
+rotation = -1.5708
+scale = Vector2(0.386539, 12.776)
+texture = SubResource("GradientTexture2D_8r1yw")
+
+[node name="ClickToRelease" type="Label" parent="."]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 323.0
+offset_top = 330.0
+offset_right = 472.0
+offset_bottom = 353.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "Click to release ball
+W/S to change paddle size"
+horizontal_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="Bricks" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="Brick24" parent="Bricks" instance=ExtResource("4_cvgef")]
+position = Vector2(114, 120)
+
+[node name="Brick35" parent="Bricks" instance=ExtResource("4_cvgef")]
+position = Vector2(95, 100)
+
+[node name="Brick36" parent="Bricks" instance=ExtResource("4_cvgef")]
+position = Vector2(209, 100)
+
+[node name="Brick39" parent="Bricks" instance=ExtResource("4_cvgef")]
+position = Vector2(304, 100)
+
+[node name="Brick40" parent="Bricks" instance=ExtResource("4_cvgef")]
+position = Vector2(342, 100)
+
+[node name="Brick41" parent="Bricks" instance=ExtResource("4_cvgef")]
+position = Vector2(323, 120)
+
+[node name="Brick42" parent="Bricks" instance=ExtResource("4_cvgef")]
+position = Vector2(323, 140)
+
+[node name="Brick43" parent="Bricks" instance=ExtResource("4_cvgef")]
+position = Vector2(323, 160)
+
+[node name="Brick44" parent="Bricks" instance=ExtResource("4_cvgef")]
+position = Vector2(323, 180)
+
+[node name="Brick45" parent="Bricks" instance=ExtResource("4_cvgef")]
+position = Vector2(323, 200)
+
+[node name="Brick46" parent="Bricks" instance=ExtResource("4_cvgef")]
+position = Vector2(304, 220)
+
+[node name="Brick47" parent="Bricks" instance=ExtResource("4_cvgef")]
+position = Vector2(342, 220)
+
+[node name="Brick48" parent="Bricks" instance=ExtResource("4_cvgef")]
+position = Vector2(437, 100)
+
+[node name="Brick49" parent="Bricks" instance=ExtResource("4_cvgef")]
+position = Vector2(437, 140)
+
+[node name="Brick50" parent="Bricks" instance=ExtResource("4_cvgef")]
+position = Vector2(437, 120)
+
+[node name="Brick51" parent="Bricks" instance=ExtResource("4_cvgef")]
+position = Vector2(437, 160)
+
+[node name="Brick52" parent="Bricks" instance=ExtResource("4_cvgef")]
+position = Vector2(437, 180)
+
+[node name="Brick53" parent="Bricks" instance=ExtResource("4_cvgef")]
+position = Vector2(437, 220)
+
+[node name="Brick37" parent="Bricks" instance=ExtResource("4_cvgef")]
+position = Vector2(209, 220)
+
+[node name="Brick38" parent="Bricks" instance=ExtResource("4_cvgef")]
+position = Vector2(95, 220)
+
+[node name="Brick25" parent="Bricks" instance=ExtResource("4_cvgef")]
+position = Vector2(114, 140)
+
+[node name="Brick26" parent="Bricks" instance=ExtResource("4_cvgef")]
+position = Vector2(114, 160)
+
+[node name="Brick34" parent="Bricks" instance=ExtResource("4_cvgef")]
+position = Vector2(152, 160)
+
+[node name="Brick27" parent="Bricks" instance=ExtResource("4_cvgef")]
+position = Vector2(114, 180)
+
+[node name="Brick28" parent="Bricks" instance=ExtResource("4_cvgef")]
+position = Vector2(114, 200)
+
+[node name="Brick29" parent="Bricks" instance=ExtResource("4_cvgef")]
+position = Vector2(190, 200)
+
+[node name="Brick30" parent="Bricks" instance=ExtResource("4_cvgef")]
+position = Vector2(190, 180)
+
+[node name="Brick31" parent="Bricks" instance=ExtResource("4_cvgef")]
+position = Vector2(190, 160)
+
+[node name="Brick32" parent="Bricks" instance=ExtResource("4_cvgef")]
+position = Vector2(190, 140)
+
+[node name="Brick33" parent="Bricks" instance=ExtResource("4_cvgef")]
+position = Vector2(190, 120)
+
+[node name="UI" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="Overlay" type="ColorRect" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.221471, 0.346088, 0.443234, 0.827451)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Overlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="GameOver" type="Label" parent="UI/Overlay/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_cnpw2")
+theme_override_font_sizes/font_size = 80
+text = "Game over"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Pause" type="Label" parent="UI/Overlay/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_cnpw2")
+theme_override_font_sizes/font_size = 80
+text = "Paused"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="UI/Overlay/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Continue"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="UI/Overlay/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]

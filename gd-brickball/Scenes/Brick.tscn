@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://icf0uragajpy"]
+
+[ext_resource type="Script" path="res://Scripts/brick.gd" id="1_ft2te"]
+[ext_resource type="Texture2D" uid="uid://cl4k0g8bf3kgs" path="res://Sprites/brick1.png" id="1_nfh8b"]
+[ext_resource type="AudioStream" uid="uid://dajboe0xmhgvd" path="res://Sounds/impactMetal_medium_000.ogg" id="3_8x4vh"]
+[ext_resource type="Texture2D" uid="uid://c3p53kw2wr1ws" path="res://Sprites/particle1.png" id="4_b558t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m7gil"]
+size = Vector2(38, 20)
+
+[sub_resource type="Gradient" id="Gradient_nl5v3"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="Brick" type="Node2D"]
+script = ExtResource("1_ft2te")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture = ExtResource("1_nfh8b")
+
+[node name="BrickBody" type="RigidBody2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BrickBody"]
+shape = SubResource("RectangleShape2D_m7gil")
+
+[node name="AudioBounceBrick" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_8x4vh")
+max_polyphony = 4
+bus = &"Bounce Bus"
+
+[node name="Particles" type="CPUParticles2D" parent="."]
+unique_name_in_owner = true
+process_mode = 1
+z_index = 5
+emitting = false
+amount = 200
+lifetime = 5.0
+explosiveness = 1.0
+texture = ExtResource("4_b558t")
+emission_shape = 3
+emission_rect_extents = Vector2(18, 9)
+direction = Vector2(0, -2)
+spread = 56.2
+gravity = Vector2(0, 400)
+initial_velocity_min = 152.78
+initial_velocity_max = 358.35
+scale_amount_min = 0.5
+scale_amount_max = 0.5
+color_ramp = SubResource("Gradient_nl5v3")
+
+[connection signal="finished" from="AudioBounceBrick" to="." method="_on_audio_bounce_brick_finished"]
+[connection signal="finished" from="Particles" to="." method="_on_particles_finished"]
