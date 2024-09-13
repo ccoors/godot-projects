@@ -25,10 +25,10 @@ func _ready() -> void:
 		ball.direction = Vector2(randf()-.5, randf()-.5)
 	init_bricks()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var brick_health = 0
-	for brick in get_tree().get_nodes_in_group("bricks"):
-		brick_health += brick.health
+	for b in get_tree().get_nodes_in_group("bricks"):
+		brick_health += b.health
 	if not brick_health:
 		init_bricks()
 
