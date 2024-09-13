@@ -19,7 +19,9 @@ texture_filter = 1
 script = ExtResource("1_taqbr")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-anchor_mode = 0
+unique_name_in_owner = true
+texture_filter = 1
+offset = Vector2(400, 300)
 
 [node name="Ball" parent="." groups=["balls"] instance=ExtResource("1_i7a7d")]
 position = Vector2(361, 420)

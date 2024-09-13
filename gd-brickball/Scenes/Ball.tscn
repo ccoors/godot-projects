@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://bxayuyqnefy37"]
 
 [ext_resource type="Script" path="res://Scripts/ball.gd" id="1_csq4u"]
-[ext_resource type="AudioStream" uid="uid://4h517ge2qckk" path="res://Sounds/footstep_carpet_003.ogg" id="2_7nb1s"]
 [ext_resource type="Shader" path="res://Shaders/Ball.gdshader" id="2_f1g0b"]
-[ext_resource type="AudioStream" uid="uid://dtdva8c68wmm1" path="res://Sounds/impactGeneric_light_000.ogg" id="3_i5fvg"]
 [ext_resource type="Texture2D" uid="uid://cf674ly2l6frr" path="res://Sprites/ball.png" id="3_ums7i"]
+[ext_resource type="AudioStream" uid="uid://cx63opw38fdhr" path="res://Sounds/wall.ogg" id="4_nvdw5"]
+[ext_resource type="AudioStream" uid="uid://bljxdgbo7m16m" path="res://Sounds/paddle.ogg" id="5_hdv3d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b67jd"]
 resource_local_to_scene = true
@@ -39,12 +39,13 @@ shape = SubResource("CircleShape2D_h2toi")
 
 [node name="AudioBounceWall" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
-stream = ExtResource("2_7nb1s")
+stream = ExtResource("4_nvdw5")
 max_polyphony = 4
 bus = &"Bounce Bus"
 
 [node name="AudioBouncePaddle" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
-stream = ExtResource("3_i5fvg")
+stream = ExtResource("5_hdv3d")
+volume_db = -6.0
 max_polyphony = 4
 bus = &"Bounce Bus"

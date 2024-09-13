@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/brick.gd" id="1_ft2te"]
 [ext_resource type="Texture2D" uid="uid://cl4k0g8bf3kgs" path="res://Sprites/brick1.png" id="1_nfh8b"]
-[ext_resource type="AudioStream" uid="uid://dajboe0xmhgvd" path="res://Sounds/impactMetal_medium_000.ogg" id="3_8x4vh"]
+[ext_resource type="AudioStream" uid="uid://blsjrlkwwt1ik" path="res://Sounds/brick.ogg" id="3_y0l6d"]
 [ext_resource type="Texture2D" uid="uid://c3p53kw2wr1ws" path="res://Sprites/particle1.png" id="4_b558t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m7gil"]
@@ -26,7 +26,8 @@ shape = SubResource("RectangleShape2D_m7gil")
 
 [node name="AudioBounceBrick" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
-stream = ExtResource("3_8x4vh")
+stream = ExtResource("3_y0l6d")
+volume_db = -3.0
 max_polyphony = 4
 bus = &"Bounce Bus"
 

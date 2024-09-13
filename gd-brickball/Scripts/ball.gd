@@ -4,6 +4,10 @@ extends RigidBody2D
 
 class_name Ball
 
+signal hit_wall
+signal hit_brick
+signal hit_paddle
+
 @export
 var direction: Vector2 = Vector2.ZERO :
 	get:
@@ -80,14 +84,17 @@ func bounce_off(collision: KinematicCollision2D):
 
 		%AudioBouncePaddle.play()
 		collided_with.bounce()
+		hit_paddle.emit()
 	elif collided_with is Brick:
 		collided_with.hit(direction)
+		hit_brick.emit()
 	elif collided_with is Ball:
 		pass
 	else:
 		if can_die and collision_shape.has_meta("death") and collision_shape.get_meta("death"):
 			queue_free()
 		%AudioBounceWall.play()
+		hit_wall.emit()
 
 	if not handled_collision:
 		direction = direction.bounce(collision.get_normal())
